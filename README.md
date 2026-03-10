@@ -8,6 +8,10 @@ https://gpadtester.org/
 
 ---
 
+## 📷 Screenshot
+
+![GPadTester online gamepad tester homepage showing controller buttons and joystick testing interface](assets/images/Gpadtester-home-page.png)
+
 ## 🚀 Features
 
 * Real-time controller detection
@@ -48,14 +52,6 @@ This allows you to test your controller instantly without downloading any softwa
 * CSS3
 * JavaScript
 * Browser Gamepad API
-
----
-
-## 📷 Screenshot
-
-![GPadTester online gamepad tester homepage showing controller buttons and joystick testing interface](assets/images/Gpadtester-home-page.png)
-
-
 
 ---
 
