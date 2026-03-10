@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Gamepad Tester — Test PS5, PS4, Xbox & Nintendo Controllers Online Free
+    </title>
+    <meta
+      name="description"
+      content="The #1 Gamepad Tester online. Test PS5, PS4, Xbox & Nintendo controllers for free. Detect stick drift, measure latency, check vibration & buttons with precision. Try it now!"
+    />
+    <meta
+      name="keywords"
+      content="gamepad tester, controller tester, PS5 controller test, Xbox controller test, joystick test, button test, stick drift test, vibration test, gamepad online"
+    />
+    <meta
+      property="og:title"
+      content="Gamepad Tester — Test Gaming Controllers Online Free"
+    />
+    <meta
+      property="og:description"
+      content="The #1 professional gamepad diagnostic tool. Test stick drift, trigger pressure, polling rate, and more on any controller for free."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://gpadtester.org/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://gpadtester.org/" />
+    <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/home.css" />
+    
+    <meta name="yandex-verification" content="817f98ef48cb5985" />
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "GPad Tester",
+        "description": "Free online gamepad testing tool for PS5, PS4, Xbox, and Nintendo controllers",
+        "url": "https://gpadtester.org/",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Web",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    </script>
+    <meta property="og:image" content="https://gpadtester.org/assets/images/GpadTester-thumbnail.webp">
+    <meta name="twitter:image" content="https://gpadtester.org/assets/images/GpadTester-thumbnail.webp">
+  </head>
+  <body>
+    <!-- Header injected by components.js -->
+      <header class="header" id="header">
+    <div class="header__inner">
+      <a href="/" class="header__logo">
+        <img src="/assets/images/logo.png" alt="GPad Tester Logo" class="header__logo-img">
+        <span>GamePad Tester</span>
+      </a>
+
+      <nav class="header__nav" id="navMenu">
+        <a href="/" class="header__nav-link">Gamepad Tester</a>
+      </nav>
+
+      <div class="header__actions">
+        <button class="header__theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">&#x1F319;</button>
+        <button class="header__hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+    <main>
+      <!-- ===== MAIN TESTER ===== -->
+      <section class="section" id="tester" style="padding-top: calc(var(--header-height) + var(--space-md));">
+        <div class="container">
+          <!-- Compact Header -->
+          <div style="text-align: center; margin-bottom: var(--space-lg);">
+            <h1 style="font-size: clamp(1.5rem, 3.5vw, 2.2rem); font-weight: 800; margin-bottom: var(--space-xs); line-height: 1.1;">
+              Gamepad <span class="hero__title-gradient">Tester</span> - Free Online Controller Test
+            </h1>
+            <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto var(--space-md); font-size: var(--fs-base);">
+              Test your PS5, PS4, PS3 Xbox, or Nintendo controller online. Connect your controller via USB or Bluetooth and press any button to begin.
+            </p>
+            <div class="status-indicator status-indicator--disconnected" id="statusIndicator">
+              <span class="status-indicator__dot"></span>
+              <span id="statusText">No controllers detected</span>
+            </div>
+          </div>
+          <!-- Controller Tabs -->
+          <div class="controller-tabs" id="controllerTabs">
+            <button class="controller-tab active" data-index="0">
+              <div class="controller-tab__title">Gamepad #1</div>
+              <div class="controller-tab__status">Not found</div>
+            </button>
+            <button class="controller-tab" data-index="1">
+              <div class="controller-tab__title">Gamepad #2</div>
+              <div class="controller-tab__status">Not found</div>
+            </button>
+            <button class="controller-tab" data-index="2">
+              <div class="controller-tab__title">Gamepad #3</div>
+              <div class="controller-tab__status">Not found</div>
+            </button>
+            <button class="controller-tab" data-index="3">
+              <div class="controller-tab__title">Gamepad #4</div>
+              <div class="controller-tab__status">Not found</div>
+            </button>
+          </div>
+
+          <div class="tester-panel">
+            <!-- Left: Controller Visual + Sticks/Triggers -->
+            <div class="glass-panel">
+              <!-- Controller SVG Display -->
+              <div class="controller-display" id="controllerDisplay">
+                <div class="no-controller" id="noControllerMsg">
+                  <div class="no-controller__icon">
+                    <div class="vibration-rings">
+                      <span></span><span></span><span></span><span></span>
+                    </div>
+                    🎮
+                  </div>
+                  <h3 class="no-controller__title">No Controller Detected</h3>
+                  <p class="no-controller__desc">
+                    Connect your controller via USB or Bluetooth and press any button to start testing.
+                  </p>
+                  <div class="no-controller__methods">
+                    <span class="no-controller__method">🔌 USB</span>
+                    <span class="no-controller__method">📶 Bluetooth</span>
+                  </div>
+                </div>
+
+                <!-- Controller visuals shown when connected -->
+                <div class="controller-visual hidden" id="controllerVisual">
+                  <!-- SVG Controller will be rendered here by JS -->
+                </div>
+              </div>
+
+              <!-- Analog Sticks -->
+              <div class="axes-panel hidden" id="axesPanel">
+                <h4 class="axes-panel__title">Analog Sticks</h4>
+                <div class="stick-display">
+                  <div class="stick-canvas-wrap">
+                    <span class="stick-canvas-wrap__label">Left Stick</span>
+                    <canvas
+                      class="stick-canvas"
+                      id="leftStickCanvas"
+                      width="140"
+                      height="140"
+                    ></canvas>
+                    <div class="stick-values">
+                      <span
+                        >X: <span id="lsX" class="text-cyan">0.00</span></span
+                      >
+                      <span
+                        >Y: <span id="lsY" class="text-cyan">0.00</span></span
+                      >
+                    </div>
+                  </div>
+                  <div class="stick-canvas-wrap">
+                    <span class="stick-canvas-wrap__label">Right Stick</span>
+                    <canvas
+                      class="stick-canvas"
+                      id="rightStickCanvas"
+                      width="140"
+                      height="140"
+                    ></canvas>
+                    <div class="stick-values">
+                      <span
+                        >X: <span id="rsX" class="text-cyan">0.00</span></span
+                      >
+                      <span
+                        >Y: <span id="rsY" class="text-cyan">0.00</span></span
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Triggers -->
+                <div class="trigger-display">
+                  <div class="trigger-bar-wrap">
+                    <span class="trigger-bar-wrap__label">L2 / LT</span>
+                    <div class="trigger-bar">
+                      <div
+                        class="trigger-bar__fill"
+                        id="ltFill"
+                        style="height: 0%"
+                      ></div>
+                    </div>
+                    <span class="trigger-bar__value" id="ltValue">0.00</span>
+                  </div>
+                  <div class="trigger-bar-wrap">
+                    <span class="trigger-bar-wrap__label">R2 / RT</span>
+                    <div class="trigger-bar">
+                      <div
+                        class="trigger-bar__fill"
+                        id="rtFill"
+                        style="height: 0%"
+                      ></div>
+                    </div>
+                    <span class="trigger-bar__value" id="rtValue">0.00</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Buttons + Info -->
+            <div>
+              <!-- Controller Info -->
+              <div class="glass-panel mb-lg hidden" id="controllerInfo">
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin-bottom: var(--space-md);
+                  "
+                >
+                  <h3 style="font-size: var(--fs-base); font-weight: 700">
+                    Controller Info
+                  </h3>
+                  <span class="badge badge--success badge--dot" id="connBadge"
+                    >Connected</span
+                  >
+                </div>
+                <p
+                  style="
+                    font-size: var(--fs-sm);
+                    color: var(--text-secondary);
+                    word-break: break-all;
+                  "
+                  id="controllerName"
+                >
+                  —
+                </p>
+                <p
+                  style="
+                    font-size: var(--fs-xs);
+                    color: var(--text-muted);
+                    margin-top: 4px;
+                  "
+                  id="controllerMapping"
+                >
+                  Mapping: —
+                </p>
+                <span
+                  id="vibrationBadge"
+                  class="badge badge--success"
+                  style="margin-top: 6px; display: none; font-size: 10px;"
+                ></span>
+              </div>
+
+              <!-- Button Grid -->
+              <div class="glass-panel">
+                <h3
+                  style="
+                    font-size: var(--fs-base);
+                    font-weight: 700;
+                    margin-bottom: var(--space-md);
+                  "
+                >
+                  Buttons
+                </h3>
+                <div class="button-grid" id="buttonGrid">
+                  <!-- Buttons will be generated by JS -->
+                </div>
+              </div>
+
+              <!-- Raw Data Toggle -->
+              <div class="raw-data-toggle">
+                <button
+                  class="neon-btn neon-btn--ghost neon-btn--sm"
+                  id="rawDataToggle"
+                >
+                  📊 Show Raw Data
+                </button>
+              </div>
+              <div class="raw-data hidden" id="rawDataPanel">
+                <pre id="rawDataContent">Waiting for controller...</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__brand">
+        <a href="/" class="header__logo">
+          <img src="/assets/images/logo.png" alt="GPad Tester Logo" class="header__logo-img" style="height:45px;width:auto" loading="lazy">
+          <span>GPad Tester</span>
+        </a>
+        <p>
+          Free online gamepad testing tool. Test your PS5, PS4, Xbox, Nintendo controllers with professional diagnostic tools. No downloads required.
+        </p>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; 2026 GPad Tester. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>window.__LANG__ = "en"; window.__LANG_PREFIX__ = "";</script>
+  <script src="/js/i18n.js"></script>
+  <script src="/js/components.js"></script>
+  <script src="/js/theme.js"></script>
+  <script src="/js/gamepad-api.js"></script>
+  <script src="/js/storage.js"></script>
+  <script src="/js/export.js"></script>
+  <script src="/js/toast.js"></script>
+  <script src="/js/navigation.js"></script>
+  <script src="/js/home.js"></script>
+</body>
+</html>
